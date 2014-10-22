@@ -1,0 +1,8 @@
+LIBRARY "IDASYM.DLL"
+
+EXPORTS
+    DebugExtensionInitialize
+    DebugExtensionUninitialize
+    DebugExtensionNotify
+    help
+	idasym
