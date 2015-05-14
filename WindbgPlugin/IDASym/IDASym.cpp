@@ -20,12 +20,14 @@ EXT_COMMAND(idasym, "Loads symbols from .sym file", "{;e64;MODULE;module}{;x;inp
 {
 	ULONG64 imageBase;
 	imageBase = GetUnnamedArgU64(0);
-	Out("%08I64x\n", imageBase);
+	Out("Image base is %08I64x\n", imageBase);
 	string inputFilename = GetUnnamedArgStr(1);
 	string line;
+	unsigned int symbolsLoadedCount = 0;
 	try {
 		ifstream ifs;
 		ifs.open(inputFilename);
+		dprintf("Loading symbols...\n");
 		while (getline(ifs, line))
 		{
 			const char* name = strchr(line.c_str(), ';') + 1;
@@ -33,10 +35,11 @@ EXT_COMMAND(idasym, "Loads symbols from .sym file", "{;e64;MODULE;module}{;x;inp
 			unsigned long offset = strtoul(line.c_str(), &end, 16);
 			unsigned long size = strtoul(end, NULL, 16);
 
-			dprintf("%08I64x %s\n", imageBase + offset, name);
+			//dprintf("%08I64x %s\n", imageBase + offset, name);
 			m_Symbols3->AddSyntheticSymbol(imageBase + offset, size, name, DEBUG_ADDSYNTHSYM_DEFAULT, NULL);
+			symbolsLoadedCount++;
 		}
-
+		dprintf("%u symbols loaded.\n", symbolsLoadedCount);
 	}
 	catch (...) 
 	{

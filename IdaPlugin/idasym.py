@@ -8,7 +8,7 @@ import idc
 # Python libraries
 import os
 
-class IDASym(plugin_t):
+class IDASym(idaapi.plugin_t):
 
     flags = idaapi.PLUGIN_UNL
     comment = "Export IDA symbols to file for later processing by WinDbg"
