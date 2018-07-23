@@ -26,9 +26,15 @@
     <ClCompile Include="IDASym.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engextcpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDASym.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engextcpp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
